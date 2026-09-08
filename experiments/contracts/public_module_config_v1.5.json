@@ -1,0 +1,96 @@
+{
+  "schema_version": "duc-vio-public-module-1.0",
+  "protocol_version": "v1.5",
+  "dataset": {
+    "name": "EuRoC MAV Dataset",
+    "doi": "10.3929/ethz-b-000690084",
+    "official_page": "https://projects.asl.ethz.ch/datasets/euroc-mav/",
+    "source_checked_date": "2026-09-05",
+    "origin": "real_world_public_dataset",
+    "archives": [
+      {
+        "name": "vicon_room1.zip",
+        "bitstream_id": "02ecda9a-298f-498b-970c-b7c44334d880",
+        "expected_bytes": 6042263426
+      },
+      {
+        "name": "vicon_room2.zip",
+        "bitstream_id": "ea12bc01-3677-4b4c-853d-87c7870b8c44",
+        "expected_bytes": 6013384949
+      }
+    ],
+    "sequences": [
+      "V1_01_easy",
+      "V1_02_medium",
+      "V1_03_difficult",
+      "V2_01_easy",
+      "V2_02_medium",
+      "V2_03_difficult"
+    ]
+  },
+  "frame_pairs": {
+    "start_index": 100,
+    "end_margin": 100,
+    "start_stride": 10,
+    "temporal_gap_frames": 4
+  },
+  "features": {
+    "max_corners": 1200,
+    "quality_level": 0.01,
+    "min_distance_px": 7,
+    "block_size": 7,
+    "lk_window_px": 21,
+    "lk_max_level": 4,
+    "forward_backward_max_px": 0.75,
+    "image_border_px": 8
+  },
+  "stereo": {
+    "min_disparity": 0,
+    "num_disparities": 128,
+    "block_size": 5,
+    "uniqueness_ratio": 10,
+    "speckle_window_size": 100,
+    "speckle_range": 2,
+    "valid_disparity_open_interval_px": [1, 128],
+    "valid_depth_closed_interval_m": [0.3, 20.0]
+  },
+  "split": {
+    "master_seed": 91531,
+    "holdout_tracks": 24,
+    "fit_budgets": [16, 48],
+    "nested_fit_sets": true
+  },
+  "solver": {
+    "opencv_threads": 1,
+    "parameter_order": ["rotation_vector_rad", "translation_m"],
+    "initialization": "EPnP_fit_only",
+    "loss": "linear",
+    "residual_sign": "observed_minus_predicted",
+    "max_nfev": 100,
+    "ftol": 1e-10,
+    "xtol": 1e-10,
+    "gtol": 1e-10,
+    "stationarity_eta_max": 1e-5,
+    "required_rank": 6
+  },
+  "calibration": {
+    "methods": ["Raw", "Global-DoF", "DPR-Exact-Block", "DUC-K16", "Permuted-K16"],
+    "k": 16,
+    "epsilon": 1e-8,
+    "chi_square_df": 2,
+    "coverage_probability": 0.95,
+    "trace_probe_domain": "public_module_trace",
+    "permutation_domain": "public_module_permutation",
+    "timing_boundary": "postfit_residual_and_jacobian_ready; qr_basis_reported_separately; method_time_is_post_qr_increment"
+  },
+  "statistics": {
+    "independent_unit": "sequence",
+    "primary_fit_budget": 16,
+    "quantile_method": "Hyndman-Fan type 7",
+    "cluster_bootstrap_repeats": 10000,
+    "bootstrap_seed": 91531,
+    "minimum_valid_pairs_per_sequence": 80,
+    "positive_gate_min_sequence_wins": 4
+  },
+  "provenance": "formal_public_module_evidence"
+}

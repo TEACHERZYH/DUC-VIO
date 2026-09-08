@@ -1,0 +1,119 @@
+{
+  "protocol_version": "v1.6",
+  "status": "PASS",
+  "primary_fit_budget": 16,
+  "checks": {
+    "ce95_sequence_wins": true,
+    "ce95_equal_sequence_median_difference_negative": true,
+    "scale_log_error_sequence_wins": true,
+    "scale_log_error_equal_sequence_median_difference_negative": true,
+    "holdout_nll_equal_sequence_median_not_worse": true,
+    "minimum_valid_pairs_all_sequences": true
+  },
+  "sequence_effects": [
+    {
+      "sequence": "V1_01_easy",
+      "ce95_difference": -0.02499999999999991,
+      "absolute_log_scale_ratio_difference": -0.1510632669162839,
+      "holdout_nll_difference": -0.21245291001373312,
+      "valid_pairs": 265
+    },
+    {
+      "sequence": "V1_02_medium",
+      "ce95_difference": -0.02499999999999991,
+      "absolute_log_scale_ratio_difference": -0.0669593204847223,
+      "holdout_nll_difference": -0.028465059835431017,
+      "valid_pairs": 128
+    },
+    {
+      "sequence": "V1_03_difficult",
+      "ce95_difference": 0.0,
+      "absolute_log_scale_ratio_difference": -0.04488527612395621,
+      "holdout_nll_difference": -0.12821872404518952,
+      "valid_pairs": 117
+    },
+    {
+      "sequence": "V2_01_easy",
+      "ce95_difference": -0.02499999999999991,
+      "absolute_log_scale_ratio_difference": -0.07899712868295072,
+      "holdout_nll_difference": -0.45435211701699174,
+      "valid_pairs": 204
+    },
+    {
+      "sequence": "V2_02_medium",
+      "ce95_difference": -0.02499999999999991,
+      "absolute_log_scale_ratio_difference": -0.06503937045949282,
+      "holdout_nll_difference": -0.21021604723749654,
+      "valid_pairs": 180
+    }
+  ],
+  "equal_sequence_median_differences": {
+    "ce95": -0.02499999999999991,
+    "absolute_log_scale_ratio": -0.0669593204847223,
+    "holdout_nll": -0.21021604723749654
+  },
+  "descriptive_cluster_bootstrap_95_percentile_intervals": {
+    "ce95": [
+      -0.02499999999999991,
+      0.0
+    ],
+    "absolute_log_scale_ratio": [
+      -0.1510632669162839,
+      -0.04488527612395621
+    ],
+    "holdout_nll": [
+      -0.45435211701699174,
+      -0.028465059835431017
+    ]
+  },
+  "source_hashes": {
+    "experiments/artifacts/public_module_formal_v1_5/V1_01_easy/pair_method_results.csv": "9bfb68a46ef3dc74f5f5ddc1c9e236559f3d1845e40833ef4580aa1329049d5b",
+    "experiments/artifacts/public_module_formal_v1_5/V1_02_medium/pair_method_results.csv": "31b66698d8ee83710dd825b60a734044f6678b2f3ec6e623c5ce646510dc9ee3",
+    "experiments/artifacts/public_module_formal_v1_5/V1_03_difficult/pair_method_results.csv": "54a4b7822815382efe411a43ce4ce0d30b1147fa908ae1acf1e71239feda075a",
+    "experiments/artifacts/public_module_formal_v1_5/V2_01_easy/pair_method_results.csv": "983350425943dfb17334625f5c13569dfd96ee8d765a685598ca90e922ddaf52",
+    "experiments/artifacts/public_module_formal_v1_5/V2_02_medium/pair_method_results.csv": "96393cbd310a3c14ef80c12b690d05a2c1b6698942dba6eb271febbb383f9fd4"
+  },
+  "sequence_summary_sha256": "2cfd357a63327a26b31603160083e7cccf9182587cd713673a828b762edc3426",
+  "failure_counts_sha256": "4ffb7070bdc6b5e9682b28a4b6655aa9836869d6c3d11f415ef1ed5f817acf9f",
+  "config_sha256": "a1029d49c2d6bd0279f9bcd389eb47ad04622c38abf4639fbcd75bf93719443b",
+  "base_protocol_version": "v1.5",
+  "base_config_sha256": "a1029d49c2d6bd0279f9bcd389eb47ad04622c38abf4639fbcd75bf93719443b",
+  "scope_sha256": "d55e970214e1151afb685879f35c1488dea179438c90a7169cf2237308b84922",
+  "confirmatory_sequences": [
+    "V1_01_easy",
+    "V1_02_medium",
+    "V1_03_difficult",
+    "V2_01_easy",
+    "V2_02_medium"
+  ],
+  "boundary_sequences": [
+    "V2_03_difficult"
+  ],
+  "valid_counts_all_sequences": {
+    "V1_01_easy": {
+      "16": 265,
+      "48": 265
+    },
+    "V1_02_medium": {
+      "16": 128,
+      "48": 128
+    },
+    "V1_03_difficult": {
+      "16": 117,
+      "48": 117
+    },
+    "V2_01_easy": {
+      "16": 204,
+      "48": 204
+    },
+    "V2_02_medium": {
+      "16": 180,
+      "48": 180
+    },
+    "V2_03_difficult": {
+      "16": 58,
+      "48": 57
+    }
+  },
+  "new_scientific_runs_performed": false
+}

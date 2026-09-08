@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "protocol_version": "v1.6",
+  "base_protocol_version": "v1.5",
+  "base_config_sha256": "a1029d49c2d6bd0279f9bcd389eb47ad04622c38abf4639fbcd75bf93719443b",
+  "confirmatory_sequences": [
+    "V1_01_easy",
+    "V1_02_medium",
+    "V1_03_difficult",
+    "V2_01_easy",
+    "V2_02_medium"
+  ],
+  "boundary_sequences": [
+    "V2_03_difficult"
+  ],
+  "inclusion_rule": "retain sequences that passed the v1.5 frozen minimum of 80 valid pairs at both fit budgets",
+  "primary_fit_budget": 16,
+  "minimum_valid_pairs_per_sequence": 80,
+  "positive_gate_min_sequence_wins": 4,
+  "cluster_bootstrap_repeats": 10000,
+  "bootstrap_seed": 91531,
+  "independent_unit": "sequence",
+  "new_scientific_runs_allowed": false
+}

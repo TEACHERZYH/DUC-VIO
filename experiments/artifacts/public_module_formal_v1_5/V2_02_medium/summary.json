@@ -1,0 +1,20 @@
+{
+  "protocol_version": "v1.5",
+  "profile": "formal",
+  "provenance": "formal_public_module_evidence",
+  "sequence": "V2_02_medium",
+  "sequence_root": "[private_execution_path_removed]",
+  "candidate_pair_count": 215,
+  "valid_pair_budget_count": 360,
+  "valid_pairs_by_budget": {
+    "16": 180,
+    "48": 180
+  },
+  "failure_counts": {
+    "INSUFFICIENT_TRACKS": 70
+  },
+  "started_utc": "2026-09-05T09:56:59.368950+00:00",
+  "ended_utc": "2026-09-05T09:57:23.042935+00:00",
+  "config_sha256": "a1029d49c2d6bd0279f9bcd389eb47ad04622c38abf4639fbcd75bf93719443b",
+  "result_csv_sha256": "96393cbd310a3c14ef80c12b690d05a2c1b6698942dba6eb271febbb383f9fd4"
+}

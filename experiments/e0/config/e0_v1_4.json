@@ -1,0 +1,894 @@
+{
+  "schema_version": "e0-scientific-contract-1.1",
+  "protocol_version": "v1.4",
+  "experiment_id": "E0",
+  "contract_status": "FROZEN",
+  "activation_status": "ACTIVE_PLAN_CODE_PENDING",
+  "supersedes_protocol_version": "v1.3",
+  "authority": {
+    "role": "sole_machine_scientific_authority_for_e0",
+    "human_readable_sources": [
+      "manuscript/DUC-VIO_实验执行方案_v1.4.md"
+    ],
+    "historical_non_authoritative_sources": [
+      "manuscript/method_experiment_draft.md"
+    ],
+    "resolution_map": "experiments/contracts/e0_resolution_map_v1.4.json",
+    "simulated_manuscript_placeholder_data_allowed_as_formal_input": false,
+    "required_formal_output_provenance": "designed_synthetic_e0",
+    "formal_profile_fail_closed": true
+  },
+  "formal_contract": {
+    "randomness": {
+      "master_seed": 91027,
+      "bit_generator": "PCG64",
+      "derived_seed": {
+        "hash_algorithm": "SHA-256",
+        "payload": {
+          "format": "canonical_json_array",
+          "encoding": "UTF-8",
+          "unicode_normalization": "NFC",
+          "ensure_ascii": false,
+          "allow_nan": false,
+          "compact_separators": true,
+          "namespace_prefix": [
+            "DUC-VIO",
+            "E0",
+            "v1.4",
+            91027
+          ],
+          "identity_suffix_order": [
+            "component",
+            "instance_kind",
+            "setting_id",
+            "instance_id",
+            "subcomponent_id"
+          ],
+          "identity_types": {
+            "component": "string_from_named_component_streams",
+            "instance_kind": "string_enum_linear_sequential_nonlinear",
+            "setting_id": "zero_based_nonnegative_json_integer",
+            "instance_id": "zero_based_nonnegative_json_integer",
+            "subcomponent_id": "json_string"
+          },
+          "missing_subcomponent_representation": "none_string_sentinel",
+          "nonlinear_setting_id": 0
+        },
+        "digest_prefix_bytes": 8,
+        "byte_order": "big",
+        "signed": false,
+        "test_vectors": [
+          {
+            "payload": [
+              "DUC-VIO",
+              "E0",
+              "v1.4",
+              91027,
+              "linear_design",
+              "linear",
+              0,
+              0,
+              "none"
+            ],
+            "derived_seed_uint64": 4834719195702842345
+          },
+          {
+            "payload": [
+              "DUC-VIO",
+              "E0",
+              "v1.4",
+              91027,
+              "sequential_contamination_values",
+              "sequential",
+              7,
+              199,
+              "none"
+            ],
+            "derived_seed_uint64": 11811978648737483947
+          },
+          {
+            "payload": [
+              "DUC-VIO",
+              "E0",
+              "v1.4",
+              91027,
+              "nonlinear_holdout",
+              "nonlinear",
+              0,
+              199,
+              "none"
+            ],
+            "derived_seed_uint64": 3356850116658280986
+          }
+        ],
+        "derived_seed_json_representation": "unsigned_decimal_json_integer"
+      },
+      "named_component_streams": [
+        "linear_design",
+        "linear_training_noise",
+        "linear_holdout",
+        "linear_negative_control_permutation",
+        "linear_rademacher_probes",
+        "sequential_design",
+        "sequential_gaussian_noise",
+        "sequential_contamination_mask",
+        "sequential_contamination_values",
+        "nonlinear_landmarks",
+        "nonlinear_training_noise",
+        "nonlinear_holdout",
+        "timing_warmup"
+      ],
+      "component_streams_are_independent": true,
+      "results_are_invariant_to_stream_call_order": true,
+      "scientific_resampling_with_new_seed_allowed": false
+    },
+    "numerics": {
+      "floating_point_dtype": "float64",
+      "spectral_clip_epsilon": 1e-8,
+      "full_block_leverage": {
+        "symmetrization": "one_half_times_matrix_plus_transpose",
+        "eigendecomposition": "symmetric_eigh",
+        "gross_eigenvalue_valid_range": {
+          "minimum": -1e-10,
+          "maximum": 1.0000000001
+        },
+        "fail_on_eigenvalue_outside_gross_valid_range": true,
+        "correction_eigenvalue_clip": {
+          "minimum": 0,
+          "maximum_rule": "one_minus_spectral_clip_epsilon"
+        },
+        "exact_trace_reference": {
+          "matrix": "symmetrized_unregularized_block_leverage",
+          "use_correction_clipped_eigenvalues": false,
+          "machine_precision_boundary_repair_only": true
+        },
+        "report_clipped_eigenvalue_count": true,
+        "solver_damping_in_statistical_hessian": false
+      }
+    },
+    "linear": {
+      "total_residual_dimension": 300,
+      "block_dimensions": [
+        2,
+        6,
+        15
+      ],
+      "true_noise_multipliers": [
+        0.5,
+        1,
+        2
+      ],
+      "noise_multiplier_semantics": {
+        "quantity": "covariance_multiplier",
+        "noise_distribution": "multivariate_normal",
+        "covariance_rule": "a_times_identity",
+        "generation_standard_deviation_rule": "square_root_of_a",
+        "reported_scale_quantity": "covariance_multiplier"
+      },
+      "mean_scalar_leverages": [
+        0.1,
+        0.4,
+        0.7
+      ],
+      "state_dimension_by_mean_leverage": {
+        "0.1": 30,
+        "0.4": 120,
+        "0.7": 210
+      },
+      "repeats_per_setting": 500,
+      "expected_settings": 27,
+      "expected_graphs": 13500,
+      "setting_enumeration": {
+        "index_base": 0,
+        "cartesian_axis_order_outer_to_inner": [
+          "block_dimensions",
+          "true_noise_multipliers",
+          "mean_scalar_leverages"
+        ],
+        "last_axis_varies_fastest": true
+      },
+      "design": {
+        "distribution": "iid_standard_normal",
+        "orthonormalization": "reduced_qr",
+        "matrix_used_by_solver": "orthonormal_column_matrix_Q",
+        "true_state_vector": "all_zeros",
+        "required_rank": "state_dimension",
+        "design_is_independent_across_graphs": true,
+        "robust_loss": "none"
+      },
+      "scale_estimator": {
+        "estimated_quantity": "covariance_multiplier",
+        "formula": "sum_squared_corrected_residuals_divided_by_total_residual_dimension",
+        "denominator": "total_residual_dimension",
+        "subtract_fitted_degrees_of_freedom": false,
+        "apply_global_degrees_of_freedom_correction": false,
+        "relative_error": "abs(estimate / true_covariance_multiplier - 1.0)"
+      },
+      "overall_scale_error_drop": {
+        "graph_metric": "scale_relative_error",
+        "within_setting_aggregation": "median_over_500_graphs",
+        "per_setting_drop": "(raw_median_error - method_median_error) / raw_median_error",
+        "across_setting_aggregation": "median_over_27_equally_weighted_settings",
+        "required_evaluable_settings": 27,
+        "any_nonevaluable_setting_rule": "overall_scale_gate_not_passed",
+        "zero_raw_median_error_rule": "endpoint_not_evaluable",
+        "epsilon_denominator_allowed": false
+      },
+      "holdout": {
+        "distribution": {
+          "family": "multivariate_normal",
+          "dimension": "block_dimension",
+          "mean": 0,
+          "covariance": "true_covariance_multiplier_times_identity"
+        },
+        "samples_per_graph": 300,
+        "sampling_unit": "independent_factor_block",
+        "independent_of_training_noise": true,
+        "common_across_methods_within_graph": true,
+        "streaming_evaluation_allowed": true
+      },
+      "coverage": {
+        "nominal_probability": 0.95,
+        "event": {
+          "statistic": "squared_l2_norm_of_holdout_block",
+          "threshold_distribution": "chi_square",
+          "threshold_degrees_of_freedom": "block_dimension",
+          "threshold_quantile_probability": 0.95,
+          "threshold_scale": "estimated_covariance_multiplier"
+        },
+        "graph_coverage": "mean_of_300_event_indicators",
+        "setting_aggregation": {
+          "coverage": "arithmetic_mean_of_500_graph_coverages",
+          "equivalent_event_count": 150000,
+          "ce95": "absolute_setting_coverage_minus_0.95",
+          "win_comparator": "strictly_less_than_raw_ce95",
+          "tie_rule": "not_a_win",
+          "missing_rule": "not_a_win"
+        }
+      },
+      "failure_policy": {
+        "replace_failed_graph_with_new_seed": false,
+        "infrastructure_retry": {
+          "allowed": true,
+          "must_reuse_identical_scientific_inputs": true
+        },
+        "main_endpoint_required_methods": [
+          "raw_postfit",
+          "full_block_dpr",
+          "permuted_full_block_negative_control"
+        ],
+        "main_endpoint_required_valid_graphs": 13500,
+        "persistent_main_method_numerical_failure_state": "PLAN_REVISION_REQUIRED",
+        "failed_trace_candidate_rule": "candidate_ineligible_without_invalidating_other_candidates",
+        "nonfinite_value_is_failure": true
+      }
+    },
+    "negative_control": {
+      "method": "permuted_full_block_leverage",
+      "permutation_unit": "factor_block_within_graph",
+      "permutation_distribution": "uniform_random_permutation",
+      "random_stream": "linear_negative_control_permutation",
+      "allow_fixed_points": true,
+      "redraw_identity_or_fixed_points": false,
+      "apply_entire_leverage_matrix": true,
+      "permute_matrix_elements_or_eigenvalues": false,
+      "cross_graph_or_cross_setting_permutation": false,
+      "record_full_permutation": true,
+      "uses_same_scale_and_coverage_endpoints_as_full_block_dpr": true
+    },
+    "trace_approximation": {
+      "candidates": [
+        4,
+        8,
+        16
+      ],
+      "selection_data": "linear_13500_graph_grid_only",
+      "probes": {
+        "distribution": "rademacher",
+        "values": [
+          -1,
+          1
+        ],
+        "probability_each": 0.5,
+        "maximum_probes_generated_per_graph": 16,
+        "nesting": {
+          "K4": "first_4_of_16",
+          "K8": "first_8_of_16",
+          "K16": "all_16"
+        },
+        "independent_coordinates": true,
+        "random_stream": "linear_rademacher_probes",
+        "independent_of_design_noise_holdout_and_permutation": true
+      },
+      "error_estimate": {
+        "random_trace_variant_for_k_selection": "deployment_clipped",
+        "deployment_clip_minimum": 0,
+        "deployment_clip_maximum_rule": "block_dimension_times_one_minus_spectral_clip_epsilon",
+        "exact_reference": "symmetrized_unregularized_exact_block_trace",
+        "relative_error": "absolute_random_minus_exact_divided_by_max_absolute_exact_and_1e-12",
+        "raw_unclipped_estimate_must_be_saved": true,
+        "raw_unclipped_estimate_is_selection_metric": false,
+        "selection_graph_metric": "graph_median_deployment_gain_relative_error",
+        "exact_normalized_leverage": "clip(exact_block_trace_divided_by_block_dimension,0,1_minus_spectral_clip_epsilon)",
+        "random_normalized_leverage": "clip(deployment_clipped_random_block_trace_divided_by_block_dimension,0,1_minus_spectral_clip_epsilon)",
+        "deployment_gain_relative_error": "abs(sqrt((1_minus_exact_normalized_leverage)/(1_minus_random_normalized_leverage))-1)",
+        "trace_relative_error_diagnostic": "absolute_random_minus_exact_divided_by_max_absolute_exact_and_1e-12",
+        "trace_relative_error_is_selection_metric": false
+      },
+      "graph_aggregation": "within_each_graph_median_over_factor_block_deployment_gain_relative_errors",
+      "global_quantiles": {
+        "setting_weight": 0.037037037037037035,
+        "graph_weight_within_setting": 0.002,
+        "all_graph_weights_equal": true,
+        "sample_count": 13500,
+        "interpolation": "Hyndman-Fan_Type_7",
+        "index_rule": "h_equals_1_plus_N_minus_1_times_p",
+        "adjacent_order_statistic_interpolation": "linear",
+        "required_probabilities": [
+          0.5,
+          0.95
+        ],
+        "nonfinite_candidate_rule": "candidate_ineligible"
+      },
+      "selection_rule": "smallest_candidate_meeting_both_frozen_deployment_gain_error_gates",
+      "no_eligible_candidate_state": "PLAN_REVISION_REQUIRED"
+    },
+    "linear_lofo": {
+      "graphs_per_setting": 30,
+      "leverage_strata": 4,
+      "factors_per_stratum": 4,
+      "factors_per_graph": 16,
+      "expected_graphs": 810,
+      "expected_factor_resolves": 12960,
+      "graph_selection": {
+        "candidate_graph_ids": "integers_0_through_499",
+        "serialization": {
+          "format": "canonical_json_array",
+          "encoding": "UTF-8",
+          "unicode_normalization": "NFC",
+          "ensure_ascii": false,
+          "allow_nan": false,
+          "compact_separators": true
+        },
+        "hash_algorithm": "SHA-256",
+        "payload_order": [
+          "DUC-VIO",
+          "E0",
+          "v1.4",
+          "linear_lofo_graph",
+          "setting_id",
+          "graph_id"
+        ],
+        "ranking": "ascending_raw_digest_bytes_then_graph_id",
+        "selection": "first_30"
+      },
+      "leverage_stratification": {
+        "ranking_value": "exact_block_trace_divided_by_block_dimension",
+        "sort_order": "ascending",
+        "tie_breaker": "factor_id_ascending",
+        "stratum_construction": "stable_array_split_into_4_contiguous_rank_groups",
+        "remainder_assignment": "earlier_strata_receive_one_extra_item",
+        "factor_selection_within_stratum": {
+          "hash_algorithm": "SHA-256",
+          "serialization": "same_as_graph_selection",
+          "payload_order": [
+            "DUC-VIO",
+            "E0",
+            "v1.4",
+            "linear_lofo_factor",
+            "setting_id",
+            "graph_id",
+            "stratum_id",
+            "factor_id"
+          ],
+          "ranking": "ascending_raw_digest_bytes_then_factor_id",
+          "selection": "first_4"
+        }
+      },
+      "error": {
+        "interpretation": "numerical_consistency_check_of_exact_ols_press_identity_not_evidence_of_nonlinear_approximation",
+        "exact_deleted_residual": "deleted_factor_original_observation_residual_after_refit_without_factor",
+        "press_prediction": "inverse_identity_minus_exact_block_leverage_times_raw_postfit_residual",
+        "factor_metric": "vector_rmse",
+        "factor_metric_formula": "l2_difference_divided_by_square_root_block_dimension",
+        "within_graph_aggregation": "median_over_16_selected_factors",
+        "within_setting_aggregation": "median_over_30_selected_graphs",
+        "setting_win_comparator": "press_strictly_less_than_raw",
+        "tie_or_invalid_setting_rule": "not_a_win",
+        "independent_statistical_unit": "sampled_graph"
+      },
+      "exact_resolve": {
+        "algorithm": "float64_svd_least_squares",
+        "rank_tolerance": "machine_epsilon_times_max_rows_columns_times_largest_singular_value",
+        "required_rank": "state_dimension",
+        "require_finite_solution_and_residual": true,
+        "adaptive_ridge_change_allowed": false,
+        "initialize_from_same_full_graph_input": true,
+        "failed_selected_factor_invalidates_graph": true,
+        "invalid_graph_makes_setting_not_a_win": true,
+        "replace_failed_factor_or_graph": false,
+        "lofo_failure_invalidates_dpr_scale_gate": false
+      }
+    },
+    "sequential": {
+      "total_residual_dimension": 300,
+      "block_dimensions": [
+        2,
+        15
+      ],
+      "step_multipliers": [
+        2,
+        4
+      ],
+      "contamination_rates": [
+        0,
+        0.1
+      ],
+      "length": 200,
+      "change_index_zero_based": 100,
+      "repeats_per_setting": 200,
+      "expected_settings": 8,
+      "expected_instances": 1600,
+      "setting_enumeration": {
+        "index_base": 0,
+        "cartesian_axis_order_outer_to_inner": [
+          "block_dimensions",
+          "step_multipliers",
+          "contamination_rates"
+        ],
+        "last_axis_varies_fastest": true
+      },
+      "mean_leverage": {
+        "value": 0.4,
+        "state_dimension": 120,
+        "design_is_fixed_within_repeat": true,
+        "design_is_independent_across_repeats": true
+      },
+      "step_semantics": {
+        "quantity": "covariance_multiplier",
+        "prechange_value": 1,
+        "postchange_values": [
+          2,
+          4
+        ],
+        "noise_standard_deviation_rule": "square_root_of_current_covariance_multiplier"
+      },
+      "contamination": {
+        "sampling_unit": "factor_block_at_time_step",
+        "mask_distribution": "independent_bernoulli",
+        "mask_probability": "setting_contamination_rate",
+        "uncontaminated_distribution": "multivariate_standard_normal",
+        "contaminated_component_distribution": "student_t_df_5",
+        "coordinate_dependence": "independent_student_t_draw_per_coordinate",
+        "shared_scale_mixture_within_block": false,
+        "student_t_variance_normalization_factor": 0.7745966692414834,
+        "generation_standard_deviation_rule": "square_root_of_current_covariance_multiplier_times_student_t_variance_normalization_factor",
+        "replace_entire_block_when_contaminated": true,
+        "preserve_target_covariance": true,
+        "independent_across_blocks_and_time": true,
+        "common_noise_and_masks_across_methods": true
+      },
+      "dpr_variant": {
+        "primary_comparison": [
+          "raw_postfit",
+          "exact_scalar_block_trace_dpr"
+        ],
+        "leverage_source": "exact_block_trace_divided_by_block_dimension",
+        "full_block_is_primary": false,
+        "random_trace_k_is_primary": false,
+        "sequential_results_may_select_k": false
+      },
+      "initialization": {
+        "slow_log_scale": 0,
+        "fast_log_scale": 0,
+        "output_log_scale": 0,
+        "g_plus": 0,
+        "g_minus": 0,
+        "initial_mode": "slow",
+        "fast_hold_count": 0,
+        "stable_count": 0,
+        "hidden_truth_warmup_allowed": false
+      },
+      "detection_evaluation": {
+        "change_time": 100,
+        "delay_event": "first_cusum_trigger_at_or_after_change_time",
+        "delay_formula": "trigger_time_minus_change_time",
+        "reset_state_at_change": false,
+        "last_observed_time": 199,
+        "miss_rule": {
+          "miss_indicator": 1,
+          "assigned_delay": 100,
+          "drop_from_delay_summary": false
+        },
+        "prechange_false_alarm_interval": {
+          "start_inclusive": 0,
+          "end_exclusive": 100
+        },
+        "stable_scale_error_interval": {
+          "start_inclusive": 150,
+          "end_inclusive": 199,
+          "metric": "median_covariance_scale_relative_error"
+        },
+        "boundary_hit_interval": {
+          "start_inclusive": 100,
+          "end_inclusive": 199,
+          "expected_step_count": 100,
+          "state": "selected_output_covariance_scale_after_current_update",
+          "hit_definition": "output_scale_at_or_beyond_bound_with_relative_tolerance",
+          "relative_tolerance": 1.4210854715202004e-14
+        }
+      },
+      "dtc": {
+        "alpha_slow": 0.02,
+        "alpha_fast": 0.25,
+        "beta": 0,
+        "energy_clip": [
+          0.1,
+          10
+        ],
+        "cusum_drift": 0.1,
+        "cusum_threshold": 0.6,
+        "minimum_fast_hold": 5,
+        "slow_return_stable_steps": 5,
+        "slow_return_abs_deviation": 0.1,
+        "update_rule": "standard_log_domain_exponential_moving_average",
+        "normalized_block_energy": "mean(square(method_postfit_block))/current_output_covariance_scale_before_update",
+        "q_t": "arithmetic_mean_over_factor_blocks_of_clip(normalized_block_energy,energy_clip_lower,energy_clip_upper)",
+        "instantaneous_log_scale": "previous_output_log_scale_plus_log(q_t)",
+        "cusum_deviation": "instantaneous_log_scale_minus_previous_slow_log_scale",
+        "cusum_update": "g_plus=max(0,g_plus_previous+deviation-cusum_drift);g_minus=max(0,g_minus_previous-deviation-cusum_drift)",
+        "trigger_comparator": "strictly_greater_than_cusum_threshold",
+        "trigger_action": "fast_mode=true;fast_hold_count=max(previous_fast_hold_count,minimum_fast_hold);g_plus=0;g_minus=0",
+        "stability_counter_update": "if_abs_deviation_strictly_less_than_slow_return_abs_deviation_then_previous_stable_count_plus_one_else_zero",
+        "fast_mode_output_and_return": "emit_fast_hidden_state_first;if_fast_hold_count_greater_than_zero_then_decrement_by_one_else_if_stable_count_at_least_slow_return_stable_steps_then_set_fast_mode_false_and_emit_slow_hidden_state_in_same_step",
+        "slow_mode_output": "emit_slow_hidden_state",
+        "state_update_order": [
+          "derive_q_and_instantaneous_log_scale_from_previous_output",
+          "update_cusum_and_evaluate_trigger",
+          "update_and_clip_slow_and_fast_hidden_states",
+          "apply_trigger_reset_and_fast_hold_state",
+          "update_stability_counter_from_previous_slow_deviation",
+          "select_and_emit_output_scale"
+        ],
+        "valid_observation_update": "u_j_t=clip((1-alpha_j)*u_j_previous+alpha_j*instantaneous_log_scale,log(lower_bound),log(upper_bound))",
+        "invalid_observation_update": "hold_previous_slow_fast_output_cusum_mode_fast_hold_and_stable_count_states",
+        "nominal_reversion_enabled": false,
+        "clip_both_hidden_states_before_output_selection": true,
+        "covariance_scale_bounds_by_block_dimension": {
+          "2": [
+            0.25,
+            16
+          ],
+          "15": [
+            0.5,
+            4
+          ]
+        },
+        "boundary_hit_rate_must_be_reported": true,
+        "block_dimension_15_step_4_interpretation": "upper_boundary_operating_condition_not_unconstrained_amplitude_recovery"
+      },
+      "execution_completion": {
+        "required_instances": 1600,
+        "all_instances_must_complete_without_numerical_failure_for_e0_final_review": true,
+        "adds_confirmatory_effect_gate": false
+      }
+    },
+    "nonlinear": {
+      "graphs": 200,
+      "lofo_factors_per_graph": 8,
+      "expected_lofo_factor_resolves": 1600,
+      "camera": {
+        "model": "calibrated_pinhole",
+        "distortion": "none",
+        "image_width_px": 752,
+        "image_height_px": 480,
+        "fx_px": 460,
+        "fy_px": 460,
+        "cx_px": 376,
+        "cy_px": 240,
+        "projection_equation": "u = fx * Xc / Zc + cx; v = fy * Yc / Zc + cy",
+        "estimated_state": "six_dof_world_to_camera_pose",
+        "intrinsics_are_known_and_fixed": true,
+        "landmarks_are_known_and_fixed_during_pose_solve": true,
+        "factor_residual_dimension": 2
+      },
+      "landmarks": {
+        "count_per_graph": 30,
+        "coordinates_m": {
+          "X": {
+            "distribution": "uniform",
+            "minimum": -1.5,
+            "maximum": 1.5
+          },
+          "Y": {
+            "distribution": "uniform",
+            "minimum": -1,
+            "maximum": 1
+          },
+          "Z": {
+            "distribution": "uniform",
+            "minimum": 4,
+            "maximum": 8
+          }
+        },
+        "acceptance": {
+          "minimum_true_camera_depth_m": 3.5,
+          "minimum_image_border_margin_px": 20,
+          "maximum_candidate_draws": 10000,
+          "insufficient_accepted_points_rule": "graph_failure_without_reseeding"
+        }
+      },
+      "pose": {
+        "convention": "world_to_camera",
+        "rotation_parameterization": "so3_exponential_map_rotation_vector",
+        "world_to_camera_equation": "X_c = Exp(hat(phi)) @ X_w + t",
+        "parameter_order": [
+          "phi_x_rad",
+          "phi_y_rad",
+          "phi_z_rad",
+          "t_x_m",
+          "t_y_m",
+          "t_z_m"
+        ],
+        "true_rotation_vector_degrees": [
+          5,
+          -3,
+          2
+        ],
+        "true_translation_m": [
+          0.1,
+          -0.05,
+          0.15
+        ],
+        "initial_rotation_vector_degrees": [
+          0,
+          0,
+          0
+        ],
+        "initial_translation_m": [
+          0,
+          0,
+          0
+        ],
+        "truth_and_initialization_are_fixed_across_graphs": true
+      },
+      "noise_and_holdout": {
+        "primary_dpr_variant": "full_block_dpr",
+        "true_covariance_multiplier": 1,
+        "training_noise": {
+          "distribution": "multivariate_normal",
+          "mean_px": [
+            0,
+            0
+          ],
+          "covariance_px2": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "robust_loss": "none"
+        },
+        "holdout": {
+          "samples_per_graph": 300,
+          "sampling_unit": "independent_two_dimensional_noise_block",
+          "evaluated_at": "true_noiseless_projection",
+          "independent_of_training_noise": true,
+          "common_across_methods_within_graph": true,
+          "coverage_threshold_distribution": "chi_square_df_2",
+          "coverage_quantile_probability": 0.95,
+          "coverage_event": "squared_l2_norm_of_holdout_noise_block_less_than_or_equal_to_chi_square_df_2_p95_times_estimated_covariance_multiplier",
+          "graph_coverage": "mean_of_300_event_indicators",
+          "graph_ce95": "abs(graph_coverage - 0.95)",
+          "estimated_pose_residual_is_holdout_reference": false
+        },
+        "scale_estimator": "sum_squared_residuals_divided_by_60",
+        "scale_relative_error": "absolute_estimate_minus_one"
+      },
+      "solver": {
+        "floating_point_dtype": "float64",
+        "library": "scipy.optimize.least_squares",
+        "method": "trf",
+        "loss": "linear",
+        "trust_region_solver": "exact",
+        "x_scale": "jac",
+        "jacobian": {
+          "method": "callable_fixed_central_difference",
+          "perturbation_convention": "direct_addition_to_each_global_rotation_vector_or_translation_coordinate",
+          "lie_group_left_or_right_composition_used": false,
+          "rotation_absolute_step_rad": 0.000001,
+          "translation_absolute_step_m": 0.000001
+        },
+        "residual": {
+          "sign": "observed_pixel_minus_predicted_pixel",
+          "within_factor_order": [
+            "u",
+            "v"
+          ],
+          "factor_stack_order": "factor_id_ascending"
+        },
+        "ftol": 1e-12,
+        "xtol": 1e-12,
+        "gtol": 1e-12,
+        "max_nfev": 500,
+        "validity": {
+          "solver_success_required": true,
+          "required_jacobian_rank": 6,
+          "rank_tolerance": "machine_epsilon_times_max_rows_columns_times_largest_singular_value",
+          "finite_solution_residual_and_jacobian_required": true,
+          "all_final_depths_positive_required": true,
+          "scipy_optimality_saved_as_diagnostic": true,
+          "normalized_stationarity": {
+            "symbol": "eta",
+          "formula": "max_j(abs(J_column_j_transpose_r)/(max(norm2(J_column_j),sqrt(float64_machine_epsilon))*max(norm2(r),sqrt(float64_machine_epsilon))))",
+            "jacobian_evaluation": "recompute_frozen_callable_fixed_central_difference_at_returned_solution",
+            "residual_evaluation": "observed_pixel_minus_predicted_pixel_at_returned_solution",
+            "maximum_eta": 0.000001,
+            "zero_residual_and_zero_gradient_rule": "eta_equals_zero",
+            "nonfinite_or_degenerate_denominator_rule": "solver_result_invalid",
+            "save_raw_gradient_column_norms_residual_norm_and_eta": true
+          }
+        },
+        "statistical_hessian": "jacobian_transpose_times_jacobian_without_solver_damping",
+        "lofo_initialization": "full_graph_optimum",
+        "lofo_uses_identical_solver_settings": true
+      },
+      "lofo_selection": {
+        "candidate_factor_ids": "integers_0_through_29",
+        "serialization": {
+          "format": "canonical_json_array",
+          "encoding": "UTF-8",
+          "unicode_normalization": "NFC",
+          "ensure_ascii": false,
+          "allow_nan": false,
+          "compact_separators": true
+        },
+        "hash_algorithm": "SHA-256",
+        "payload_order": [
+          "DUC-VIO",
+          "E0",
+          "v1.4",
+          "nonlinear_lofo_factor",
+          "graph_id",
+          "factor_id"
+        ],
+        "ranking": "ascending_raw_digest_bytes_then_factor_id",
+        "selection": "first_8",
+        "selection_uses_error_or_leverage": false,
+        "replace_failed_factor": false
+      },
+      "lofo_evaluation": {
+        "role": "descriptive_check_of_local_press_approximation_under_nonlinearity",
+        "adds_confirmatory_hard_gate": false,
+        "exact_deleted_residual": "selected_factor_observed_pixel_minus_projection_after_refit_without_that_factor",
+        "raw_predictor": "selected_factor_raw_postfit_residual_from_full_graph",
+        "press_predictor": "inverse_identity_minus_full_graph_exact_block_leverage_times_raw_postfit_residual",
+        "factor_error_metric": "l2_difference_from_exact_deleted_residual_divided_by_square_root_2",
+        "within_graph_aggregation": "median_over_8_preselected_factors",
+        "across_graph_reporting": [
+          "valid_graph_count_out_of_200",
+          "median_and_interquartile_range_of_graph_errors_by_predictor",
+          "count_of_graphs_where_press_error_is_strictly_less_than_raw_error"
+        ],
+        "valid_graph_rule": "full_graph_valid_and_all_8_selected_lofo_solves_and_both_predictor_errors_finite",
+        "selected_factor_failure_rule": "nonlinear_lofo_graph_invalid_without_replacement",
+        "lofo_failure_invalidates_nonlinear_scale_or_ce95_gates": false,
+        "failed_factor_or_graph_replacement_allowed": false
+      },
+      "paired_bootstrap_and_failure": {
+        "common_valid_graph_definition": "both_raw_and_full_block_dpr_endpoints_valid",
+        "minimum_common_valid_graphs": 190,
+        "scale_error": "absolute_estimated_covariance_multiplier_minus_one",
+        "scale_relative_drop": "one_minus_median_dpr_error_divided_by_median_raw_error",
+        "scale_bootstrap_statistic": "median_dpr_scale_error_minus_median_raw_scale_error",
+        "ce95_bootstrap_statistic": "median_dpr_graph_ce95_minus_median_raw_graph_ce95",
+        "resampling_unit": "paired_graph",
+        "bootstrap_repeats": 10000,
+        "bootstrap_bit_generator": "PCG64",
+        "bootstrap_seed": 91027,
+        "reset_generator_separately_for_each_endpoint": true,
+        "quantile_interpolation": "Hyndman-Fan_Type_7",
+        "one_sided_upper_probability": 0.95,
+        "raw_failure": "full_graph_solver_or_raw_endpoint_invalid",
+        "dpr_failure": "raw_failure_or_additional_leverage_or_dpr_endpoint_invalid",
+        "dpr_failures_may_exceed_raw_failures": false,
+        "exclude_failed_graphs_from_paired_bootstrap_but_count_failures": true,
+        "replace_failed_graph": false,
+        "zero_raw_median_error_rule": "nonlinear_gate_not_passed",
+        "nonfinite_bootstrap_rule": "nonlinear_gate_not_passed"
+      }
+    },
+    "timing": {
+      "purpose": "descriptive_e0_diagnostic_only",
+      "may_select_k": false,
+      "may_support_c4_or_20hz_claim": false,
+      "process_count": 1,
+      "blas_thread_count": 1,
+      "clock": "python_time_perf_counter_ns",
+      "record_cpu_os_library_versions": true,
+      "warmup": {
+        "instances_per_unique_block_dimension_and_state_dimension": 20,
+        "random_stream": "timing_warmup",
+        "included_in_scientific_sample_counts": false,
+        "included_in_timing_summary": false
+      },
+      "linear_boundary": {
+        "start_state": "orthonormal_statistical_design_basis_Q_and_postfit_residual_ready",
+        "included": [
+          "block_Q_products_or_squared_sums",
+          "Q_times_Q_transpose_projection_products",
+          "probe_generation",
+          "spectral_or_trace_boundary_checks",
+          "trace_clipping",
+          "residual_correction"
+        ],
+        "end_state": "corrected_residual_ready",
+        "excluded": [
+          "graph_generation",
+          "base_least_squares_fit",
+          "statistical_hessian_construction",
+          "factorization_or_backsolve_before_Q_is_ready",
+          "holdout_evaluation",
+          "lofo_resolves",
+          "file_io",
+          "statistical_aggregation"
+        ],
+        "nested_k_timing": "cumulative_checkpoints_after_probes_4_8_and_16",
+        "independent_method_timers": [
+          "full_block_dpr",
+          "exact_scalar_block_trace_dpr",
+          "random_trace_nested_k"
+        ],
+        "each_timer_start_state": "orthonormal_statistical_design_basis_Q_and_postfit_residual_ready",
+        "random_k_excludes": [
+          "full_block_leverage_construction",
+          "full_block_dpr_correction",
+          "exact_scalar_trace_computation",
+          "exact_scalar_dpr_correction"
+        ],
+        "nested_probe_generation": {
+          "order": [
+            4,
+            8,
+            16
+          ],
+          "K4": "generate_and_process_columns_1_through_4",
+          "K8": "then_generate_and_process_columns_5_through_8",
+          "K16": "then_generate_and_process_columns_9_through_16",
+          "cumulative_checkpoint_includes_corresponding_incremental_probe_generation": true,
+          "scientific_probe_prefixes_identical_to_untimed_nested_definition": true
+        }
+      },
+      "nonlinear_boundaries": [
+        "base_full_graph_solver",
+        "postfit_dpr_only",
+        "eight_lofo_resolves"
+      ],
+      "timed_repetitions_per_formal_graph": 1,
+      "retime_based_on_result_allowed": false,
+      "process_count_semantics": "one_os_process_per_worker_with_one_blas_thread_multiple_manifest_shards_may_use_separate_workers"
+    },
+    "gates": {
+      "linear_scale_error_relative_drop_min": 0.15,
+      "linear_ce95_win_settings_min": 22,
+      "negative_control_specificity": {
+        "must_not_simultaneously_reach_linear_scale_and_ce95_gates": true,
+        "failure_state_if_both_reached": "PLAN_REVISION_REQUIRED"
+      },
+      "lofo_win_settings_min": 22,
+      "nonlinear_common_valid_min": 190,
+      "nonlinear_dpr_failures_must_not_exceed_raw": true,
+      "nonlinear_scale_error_relative_drop_min": 0.1,
+      "nonlinear_scale_difference_bootstrap_upper_max": 0,
+      "nonlinear_scale_difference_requires_strictly_less_than_max": true,
+      "nonlinear_ce95_difference_bootstrap_upper_max": 0.01,
+      "nonlinear_ce95_difference_allows_equality_to_max": true,
+      "k_median_deployment_gain_rel_error_max": 0.05,
+      "k_p95_deployment_gain_rel_error_max": 0.1
+    }
+  }
+}

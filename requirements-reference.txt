@@ -1,0 +1,8 @@
+# 历史EuRoC计算的核心版本；不是本次发布验证环境。
+numpy==1.26.4
+scipy==1.13.1
+opencv-python==4.11.0.86
+PyYAML==6.0.3
+pandas==2.3.3
+matplotlib==3.10.8
+pytest==8.4.1
