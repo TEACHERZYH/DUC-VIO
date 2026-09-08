@@ -172,13 +172,6 @@ def test_comparison_rejects_unusable_input(tmp_path, defect):
     with pytest.raises(ValueError): compare(path, path, rtol=-1 if defect == 'bad_tolerance' else 1e-8, atol=1e-10)
 
 
-def test_reproduction_comparator_keeps_boolean_type():
-    from scripts.reproduce import equal
-    assert not equal(True, 1)
-    assert not equal(False, 0.)
-    assert equal(1., 1)
-
-
 def test_changed_scientific_config_is_rejected(tmp_path):
     config = json.loads(CONFIG.read_text(encoding='utf-8'))
     config['split']['master_seed'] += 1
@@ -204,14 +197,6 @@ def test_plot_inputs_cannot_mix_review_and_summary(tmp_path):
     altered = tmp_path / 'summary.csv'
     altered.write_bytes(summary.read_bytes() + b'\n')
     with pytest.raises(ValueError): load_reviewed_aggregate(gate, altered)
-
-
-def test_manifest_rejects_empty_list(tmp_path, monkeypatch):
-    from scripts import reproduce
-    (tmp_path / 'evidence').mkdir()
-    (tmp_path / 'evidence/source_manifest.json').write_text('{"files": []}', encoding='utf-8')
-    monkeypatch.setattr(reproduce, 'ROOT', tmp_path)
-    with pytest.raises(ValueError): reproduce.verify_sources()
 
 
 def test_missing_dataset_does_not_leave_output(tmp_path):

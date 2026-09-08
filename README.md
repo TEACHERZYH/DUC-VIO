@@ -25,12 +25,9 @@
 python -m pip install -r requirements.txt
 python -m pytest -q
 python scripts/run_e0.py --profile smoke --output outputs/e0-smoke
-python scripts/reproduce.py --output outputs/paper-recheck --plots
 ```
 
-输出目录必须尚不存在；重跑时换用新目录。`smoke`每类只运行一个缩小问题，不能用于正式结论。`reproduce.py`不运行新科学实验：它从六条序列的逐帧对结果重算EuRoC汇总，核对归档结果，并用已核验图源重绘三幅定量图。原六序列门槛未通过的状态也必须匹配，不能改成通过。
-
-运行后，`outputs/paper-recheck/`包含重算表格、SVG/PDF/PNG图和`reproduction_report.json`。默认不上传生成的图像和临时结果。图的证据范围见[图形说明](docs/FIGURES.md)。
+输出目录必须尚不存在；重跑时换用新目录。`smoke`每类只运行一个缩小问题，不能用于正式结论。原六序列门槛未通过的状态也必须匹配，不能改成通过。
 
 ## 文件导航
 
@@ -38,7 +35,7 @@ python scripts/reproduce.py --output outputs/paper-recheck --plots
 |---|---|
 | `experiments/e0/e0formal/` | 六个原始数值内核与两个公开离线入口适配文件 |
 | `experiments/e0/config/e0_v1_4.json` | 冻结数值实验配置 |
-| `experiments/public_module/` | EuRoC加载、特征筛选、求解、评价、结果校验、汇总和绘图代码 |
+| `experiments/public_module/` | EuRoC加载、特征筛选、求解、评价、结果校验与汇总代码 |
 | `experiments/artifacts/` | 六序列逐帧对指标、全范围与收窄范围汇总 |
 
 完整复现命令、数据目录及环境差异见[实验范围](docs/EXPERIMENTS.md)；可复现程度、时间指标限制和发布检查见[来源说明](docs/PROVENANCE.md)。

@@ -1,6 +1,5 @@
 """公开包的科学配置、来源和可移植入口检查。"""
 from pathlib import Path
-import importlib.util
 import sys
 import pytest
 
@@ -10,12 +9,6 @@ from experiments.e0.e0formal.contract import load_frozen_contract, FormalExecuti
 from experiments.e0.e0formal.authorization import FormalProcessSession
 from experiments.e0.e0formal.identity import iter_instance_ids, IdentityError
 from experiments.e0.e0formal.statistics import paired_bootstrap_difference_of_medians
-
-
-def test_source_hashes():
-    spec=importlib.util.spec_from_file_location('reproduce',ROOT/'scripts/reproduce.py')
-    module=importlib.util.module_from_spec(spec); spec.loader.exec_module(module)
-    assert module.verify_sources()>=50
 
 
 def test_frozen_counts():

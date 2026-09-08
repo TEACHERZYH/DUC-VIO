@@ -128,26 +128,6 @@
       "revision_id": "1.0.1"
     },
     {
-      "source": "experiments/public_module/make_publication_figure_v1_6.py",
-      "path": "experiments/public_module/make_publication_figure_v1_6.py",
-      "source_sha256": "bb893f92cf87b652ebf9de8f804ebd388b9440c783268b0d39c75835698f523a",
-      "sha256": "5c31cbacc302b3ae77da31668b0b2db10fd63513b31452e1183b148cff9bb302",
-      "operation": "public_validation_and_execution_revision",
-      "previous_public_sha256": "bb893f92cf87b652ebf9de8f804ebd388b9440c783268b0d39c75835698f523a",
-      "previous_operation": "byte_identical_copy",
-      "revision_id": "1.0.1"
-    },
-    {
-      "source": "experiments/public_module/make_publication_tables_v1_6.py",
-      "path": "experiments/public_module/make_publication_tables_v1_6.py",
-      "source_sha256": "9d90b35ca29530aa81e4c064219338a1f3ff2df0e324bdd37612e049ac849abe",
-      "sha256": "69add5f82c2a10cfd387871623db339d71ca2f3ea8e52dc0786024bc72a5056b",
-      "operation": "public_validation_and_execution_revision",
-      "previous_public_sha256": "9d90b35ca29530aa81e4c064219338a1f3ff2df0e324bdd37612e049ac849abe",
-      "previous_operation": "byte_identical_copy",
-      "revision_id": "1.0.1"
-    },
-    {
       "source": "experiments/public_module/tests/test_public_module.py",
       "path": "experiments/public_module/tests/test_public_module.py",
       "source_sha256": "0b88e06e236ca608e3cbc9e1dddd13d3cfe622360380edb880005c1754d8e86f",
