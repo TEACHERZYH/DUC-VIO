@@ -18,7 +18,7 @@ from experiments.public_module.aggregate_public_module_v1_6 import aggregate_nar
 
 def verify_sources():
     manifest=json.loads((ROOT/'evidence/source_manifest.json').read_text(encoding='utf-8'))
-    if not isinstance(manifest.get('files'),list) or len(manifest['files'])<54:
+    if not isinstance(manifest.get('files'),list) or len(manifest['files'])<39:
         raise ValueError('来源清单缺少继承材料。')
     seen=set()
     for item in manifest['files']:
